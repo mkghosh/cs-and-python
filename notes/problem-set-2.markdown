@@ -131,3 +131,79 @@ Remaining balance: 4691.11
  3. Output the monthly summary.
  4. Keep track of the total amount of paid over all the past months so far.
 - Print out the total result.
+
+<br>
+
+## Problem 2: Paying debt off in a year
+
+Now write a program that calculates the minimum __fixed__ monthly payment
+needed in order pay off a credit card balance within 12 months.
+By a fixed monthly payment, we mean a single number which does not change
+each month, but instead is a constant amount that will be paid each month.
+
+In this problem, we will not be dealing with a minimum monthly payment rate.
+
+The following variables contain values as described below:
+
+1. `balance` - the outstanding balance on the credit card
+2. `annualInterestRate` - annual interest rate as a decimal
+
+The program should print out one line: the lowest monthly payment that will pay
+off all debt in under 1 year, for example: `Lowest Payment: 180`.
+
+Assume that the interest in compounded monthly according to the balance at the
+end of the month (after the payment for that month is made). The monthly payment
+must be a multiple of $10 and is the same for all months. Notice that it is
+possible for the balance to become negative using this payment scheme,
+which is okay.
+
+<br>
+
+## Problem 3: Using bisection search to make the program faster
+
+You'll notice that in Problem 2, your monthly payment had to be a multiple to $10.
+Why did we make it that way?
+
+You can try running your code locally so that the payment can be any dollar
+and cent amount (in other words, the monthly payment is a multiple of $0.01).
+Does your code still work? It should, but you may notice that your code runs
+more slowly, especially in case with very large balances and interest rates.
+
+Well then, how can we calculate a more accurate fixed monthly payment
+than we did in Problem 2 without running into the problem of slow code?
+We can make this program run faster using __bisection search__.
+
+The following variables contain values as described below:
+
+1. `balance` - the outstanding balance on the credit card
+2. `annualInterestRate` - annual interest rate as a decimal
+
+To recap the problem:
+we are searching for the smallest monthly payment
+such that we can pay off the entire balance within a year.
+
+What is a reasonable __lower bound__ for this payment value?
+$0 is the obvious answer, but you can do better than that.
+If there was no interest, the debt can be paid off by monthly payments
+of one-twelfth of the original balance, so we must pay at least this
+much every month. One-twelfth of the original balance is a good lower bound.
+
+What is a good __upper bound__? Imagine that instead of paying monthly,
+we paid off the entire balance at the end of the year. What we ultimately
+pay must be greater than what we would've paid in monthly installments,
+because the interest was compounded on the balance we didn't pay off each month.
+So a good upper bound for the monthly payment would be one-twelfth of the balance,
+after having its interest compounded monthly for an entire year.
+
+In short:
+- Monthly interest rate = `annual_interest_rate / 12.0`
+- Monthly payment lower bound = `balance / 12.0`
+- Monthly payment upper bound = `balance x (1 + monthly_interest_rate) ** 12 / 12.0`
+
+Write a program that uses these bounds and bisection search to find
+the smallest monthly payment to _the cent_ (no more multiples of $10) such that
+we can pay off the debt within a year.
+
+<br>
+
+[Reference implementation of this problem set](https://github.com/hexteto/cs-and-python/src/payOff.py)
