@@ -108,3 +108,24 @@ Sorry, you ran out of guesses. The word was else.
 `secretWord` 中的字母存在于字母列表则显示为字母, 否则显示为下划线.
 - 实现函数 `getAvailableLetters`, 接受一个字母列表参数 `lettersGuessed`.
 该函数返回一个由英文字母 [a-z] 组成的字符串, 在 `lettersGuessed` 中出现的字符__不包含__在内.
+
+> 在 `getAvailableLetters` 中, 因为字符串是不可变对象,
+> 移除字符串中的字符可以参考使用 `string.replace(old, new)` 方法.
+
+
+### PART 2 : Function hangman
+
+有了 part 1 中的功能函数, 现在要实现 `hangman` 函数完成整个游戏流程.
+该函数接受一个字符串参数 `secretWord` 即用户输入.
+
+在实现该函数时需要注意以下几点:
+
+1. 确保用户输入为小写 `string.lower()`
+2. 注意如何正确使用以下几个信息:
+  - 用户输入的猜测
+  - 用户目前已经猜过的字符
+  - 尝试次数
+  - 可用字符列表
+
+
+参考代码 [hangman.py](https://github.com/HexTeto/cs-and-python/blob/master/src/hangman.py)
