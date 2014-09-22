@@ -31,6 +31,9 @@ Scoring
        plus and additional 50 point bonus for using all n letters).
 ```
 
+参考代码实现 [part 1](https://github.com/HexTeto/cs-and-python/blob/master/src/wordGame/ps4a.py),
+[part 2](https://github.com/HexTeto/cs-and-python/blob/master/src/wordGame/ps4b.py)
+
 ### P1 - Word Scores
 
 实现 `getWordScore` 计算一个单词的得分数, 该函数接收小写字母组成的字符串, 返回该字符串的得分数.
@@ -117,3 +120,34 @@ Allow the user to play an arbitrary number of hands.
 2) When done playing the hand, repeat from step 1
 
 ```
+
+
+### P7 - Computer Chooses a Word
+
+在 P1-P6 的基础上, 我们已经实现了一个完整的游戏交互流程, 之后的三个问题将进一步扩展该游戏的功能.
+在 P7, 首先实现函数 `comChooseWord(hand, wordList, n)`, 伪码如下:
+
+```
+Create a new variable to store the maximum score seen so far (initially 0)
+
+Create a new variable to store the best word seen so far (initially None)  
+
+For each word in the wordList
+
+    If you can construct the word from your hand
+    (hint: you can use isValidWord, or - since you don't really need to test if the word is in the wordList - you can make a similar function that omits that test)
+
+        Find out how much making that word is worth
+
+        If the score for that word is higher than your best score
+
+            Update your best score, and best word accordingly
+
+
+return the best word you found.
+
+```
+
+### P8 && P9
+
+实现了 P7 中的电脑选词功能后, 参考 `playHand` 和 `playGame`, 为计算机实现相应的流程.
